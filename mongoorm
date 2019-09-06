@@ -1,1 +1,90 @@
 
+Config reactivemongotemplate:
+package com.bnhp.config;
+
+import com.bnhp.persistence.DaoImpl;
+
+import com.mongodb.MongoCredential;
+import com.mongodb.ServerAddress;
+import com.mongodb.async.client.MongoClientSettings;
+import com.mongodb.connection.ClusterSettings;
+import com.mongodb.reactivestreams.client.MongoClient;
+import com.mongodb.reactivestreams.client.MongoClients;
+import lombok.Data;
+import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Primary;
+import org.springframework.data.mongodb.config.AbstractReactiveMongoConfiguration;
+import org.springframework.data.mongodb.core.ReactiveMongoTemplate;
+import org.springframework.data.mongodb.repository.config.EnableReactiveMongoRepositories;
+import java.util.Arrays;
+
+@Data
+@Configuration
+@EnableReactiveMongoRepositories(basePackageClasses  = DaoImpl.class)
+@ConfigurationProperties(prefix = "primary.mongodb")
+public class PrimaryMongoConnection extends AbstractReactiveMongoConfiguration {
+
+    //@Bean gives a name (primaryMongoTemplate) to the created MongoTemplate instance
+    //Mongo DB Properties
+    private String userName;
+    private String password;
+    private String host, database;
+    private int port;
+
+
+    @Override
+    public MongoClient reactiveMongoClient() {
+        MongoCredential credential = MongoCredential.createCredential(userName, database, password.toCharArray());
+        ClusterSettings clusterSettings = ClusterSettings.builder()
+                .hosts(Arrays.asList(new ServerAddress(host,port))).build();
+        MongoClientSettings settings = MongoClientSettings.builder()
+                .clusterSettings(clusterSettings)
+                .credentialList(Arrays.asList(credential))
+                .build();
+
+        return MongoClients.create(settings);
+    }
+
+
+    @Override
+    protected String getDatabaseName() {
+        return database;
+    }
+
+    @Primary
+    @Bean(name = "primaryMongoTemplate")
+    public ReactiveMongoTemplate getMongoTemplate() {
+        return new ReactiveMongoTemplate(reactiveMongoClient() ,getDatabaseName());
+    }
+
+
+
+       /*@Override
+    protected String getDatabaseName() {
+        return "test";
+    }
+
+    @Bean
+    public ReactiveMongoDatabaseFactory reactiveMongoDatabaseFactory() {
+        return new SimpleReactiveMongoDatabaseFactory(MongoClients.create("mongodb://joe:secret@localhost"), "database");
+    }
+    @Override
+    public MongoClient reactiveMongoClient() {
+        MongoCredential credential = MongoCredential.createCredential(userName,database, password.toCharArray());
+        com.mongodb.async.client.MongoClient mongoClient = new com.mongodb.async.client.MongoClient()
+
+        return MongoClients.create();
+    }*/
+
+   /* @Bean
+    public ReactiveMongoTemplate reactiveMongoTemplate() {
+        return new ReactiveMongoTemplate(reactiveMongoClient(), getDatabaseName());
+    }*/
+
+}
+
+///////////////////////////////////
+
+
