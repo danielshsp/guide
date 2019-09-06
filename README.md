@@ -5,7 +5,10 @@ https://www.boraji.com/spring-4-hibernate-5-jpa-2-integration-example
 https://www.logicbig.com/tutorials/spring-framework/spring-orm/spring-jpa-transaction.html
 
 Spring 4 mvc restController :
-https://www.boraji.com/spring-mvc-4-restcontroller-example
+https://www.boraji.com/spring-mvc-4-restcontroller-example - embded tomcat
+https://dzone.com/articles/how-to-use-npm-rest-api-to-get-audit-npm-audit-res - with web module
+https://howtodoinjava.com/spring-restful/spring-rest-hello-world-json-example/ with web module
+
 
 Messaging kafka manual commit:
 https://github.com/contactsunny/spring-kafka-test/blob/master/src/main/java/com/contactsunny/poc/springKafkaTest/listeners/TestTopicListener.java
