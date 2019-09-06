@@ -6,7 +6,7 @@ https://www.logicbig.com/tutorials/spring-framework/spring-orm/spring-jpa-transa
 
 Spring 4 mvc restController :
 https://www.boraji.com/spring-mvc-4-restcontroller-example - embded tomcat
-https://dzone.com/articles/how-to-use-npm-rest-api-to-get-audit-npm-audit-res - with web module
+https://dzone.com/articles/build-rest-web-service-using-spring - with web module for tomcat 8
 https://howtodoinjava.com/spring-restful/spring-rest-hello-world-json-example/ with web module
 
 
