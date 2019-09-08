@@ -1,5 +1,5 @@
 # guide
-message and orm package spring
+ orm package spring
 spring 4 native include hibernet entity manager transaction:
 https://www.boraji.com/spring-4-hibernate-5-jpa-2-integration-example
 https://www.logicbig.com/tutorials/spring-framework/spring-orm/spring-jpa-transaction.html
@@ -18,4 +18,7 @@ https://stackoverflow.com/questions/9095471/getting-a-simple-spring-jms-client-a
 https://docs.spring.io/spring-amqp/api/org/springframework/amqp/core/AcknowledgeMode.html
 https://memorynotfound.com/spring-boot-embedded-activemq-configuration-example/
 https://docs.spring.io/spring-boot/docs/current/api/org/springframework/boot/autoconfigure/jms/JmsProperties.AcknowledgeMode.html
+
+MapStruct entitytodto:
+https://medium.com/@tushar.sharma118/mapstruct-an-exploratory-example-51047d97352d
 
