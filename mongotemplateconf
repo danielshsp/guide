@@ -1,0 +1,65 @@
+@Data
+public abstract class MongoConfig {
+    //Mongo DB Properties
+    private String host, database;
+    private int port;
+
+
+    public MongoDbFactory mongoDbFactory() {
+        return new SimpleMongoDbFactory(getMongoClient(), database);
+    }
+
+    //Method that creates MongoClient
+    private MongoClient getMongoClient() {
+        return new MongoClient(host, port);
+    }
+
+    //Factory method to create the MongoTemplate
+    abstract public MongoTemplate getMongoTemplate();
+
+}
+
+///////////////
+package com.bnhp.api.config;
+
+import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Primary;
+import org.springframework.data.mongodb.core.MongoTemplate;
+import org.springframework.data.mongodb.repository.config.EnableMongoRepositories;
+
+@Configuration
+@EnableMongoRepositories(basePackages = {"com.bnhp.persistence.primary"}, mongoTemplateRef = "primaryMongoTemplate")
+@ConfigurationProperties(prefix = "primary.mongodb")
+public class PrimaryMongoConnection extends MongoConfig {
+
+    //@Bean gives a name (primaryMongoTemplate) to the created MongoTemplate instance
+
+    @Primary
+    @Override
+    @Bean(name = "primaryMongoTemplate")
+    public MongoTemplate getMongoTemplate() {
+        return new MongoTemplate(mongoDbFactory());
+    }
+}
+////////////
+package com.bnhp.api.config;
+
+import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.data.mongodb.core.MongoTemplate;
+import org.springframework.data.mongodb.repository.config.EnableMongoRepositories;
+
+@Configuration
+@EnableMongoRepositories(basePackages = {"com.bnhp.persistence.secondary"}, mongoTemplateRef = "secondaryMongoTemplate")
+@ConfigurationProperties(prefix = "secondary.mongodb")
+public class SecondaryMongoConnection extends MongoConfig{
+
+    @Override
+    @Bean(name = "secondaryMongoTemplate")
+    public MongoTemplate getMongoTemplate() {
+        return new MongoTemplate(mongoDbFactory());
+    }
+}
