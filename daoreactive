@@ -1,1 +1,48 @@
 
+package com.bnhp.persistence;
+
+
+
+import lombok.extern.slf4j.Slf4j;
+import org.apache.logging.log4j.Logger;
+import org.reactivestreams.Subscription;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.mongodb.core.ReactiveMongoTemplate;
+import org.springframework.stereotype.Repository;
+import reactor.core.Disposable;
+import reactor.core.publisher.Flux;
+import reactor.core.publisher.Mono;
+import javax.annotation.PreDestroy;
+import java.time.Duration;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import java.util.concurrent.atomic.AtomicInteger;
+
+@Repository
+@Slf4j
+public class DaoImpl  /*implements Dao */{
+
+    @Autowired
+    ReactiveMongoTemplate reactiveMongoTemplate;
+    private final AtomicInteger counter = new AtomicInteger();
+    private Disposable subscription;
+    private Logger logger;
+
+
+    //@Override
+    public Mono<Map> findAndSave(String collectionName) {
+        List <Map> arr = new ArrayList<Map>();
+        Flux<Map> stream = reactiveMongoTemplate.findAll(Map.class, collectionName);
+        subscription = stream.subscribe ( p -> {
+                    System.out.println (p);
+                    log.info ("inserted object" );
+                    reactiveMongoTemplate.insert(p, "test2").timeout(Duration.ofMillis(300)).subscribe();//toProcessor ().timeout ( Duration.ofMillis ( 1000 ) );
+        }, error-> {
+                     log.error ( "There is problem with stream " ,error);
+        });
+        return stream.last();
+
+    }
+
+
