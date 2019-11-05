@@ -1,0 +1,7 @@
+First Convert pem(Attunitycert) to jks and p12 for ssl connection
+this is the steps in command (git bash) for ssl connction:
+
+1.keytool -import -alias root -storepass mypass -keystore truststore.jks -file rootca.pem -noprompt
+2.keytool -importkeystore -srckeystore myuser.pkcs12 -srcstoretype PKCS12 -destkeystore keystore.jks -deststoretype JKS -deststorepass mypass -srcstorepass mypass
+
+then will use by jks and p12 for connction
