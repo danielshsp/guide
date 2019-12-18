@@ -22,3 +22,8 @@ https://docs.spring.io/spring-boot/docs/current/api/org/springframework/boot/aut
 MapStruct entitytodto:
 https://medium.com/@tushar.sharma118/mapstruct-an-exploratory-example-51047d97352d
 
+sslmySQL
+https://www.techrunnr.com/connect-mysql-server-from-spring-boot-application-with-ssl/
+
+sslmongo
+https://www.compose.com/articles/how-to-connecting-to-compose-mongodb-with-java-and-ssl/
