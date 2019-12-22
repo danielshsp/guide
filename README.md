@@ -36,3 +36,6 @@ https://v2-14-0.helm.sh/docs/chart_template_guide/ -for asConfig /secrets with g
 https://helm.sh/docs/howto/charts_tips_and_tricks/ -for basepath to listen other resource change
 
 https://kubernetes.io/docs/concepts/storage/volumes/ - for volume include item
+
+example helm:
+https://medium.com/htc-research-engineering-blog/a-simple-example-for-helm-chart-fbb5c7208e94 / https://ordina-jworks.github.io/cloud/2019/08/05/deploy-spring-boot-kubernetes.html
