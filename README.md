@@ -34,3 +34,5 @@ https://helm.sh/docs/topics/chart_template_guide/variables/ - for range and more
 https://v2-14-0.helm.sh/docs/chart_template_guide/ -for asConfig /secrets with go template
 
 https://helm.sh/docs/howto/charts_tips_and_tricks/ -for basepath to listen other resource change
+
+https://kubernetes.io/docs/concepts/storage/volumes/ - for volume include item
