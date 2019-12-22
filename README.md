@@ -27,3 +27,10 @@ https://www.techrunnr.com/connect-mysql-server-from-spring-boot-application-with
 
 sslmongo
 https://www.compose.com/articles/how-to-connecting-to-compose-mongodb-with-java-and-ssl/
+
+helm:
+https://helm.sh/docs/topics/chart_template_guide/variables/ - for range and more with go template
+
+https://v2-14-0.helm.sh/docs/chart_template_guide/ -for asConfig /secrets with go template
+
+https://helm.sh/docs/howto/charts_tips_and_tricks/ -for basepath to listen other resource change
