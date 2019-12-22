@@ -39,3 +39,6 @@ https://kubernetes.io/docs/concepts/storage/volumes/ - for volume include item
 
 example helm:
 https://medium.com/htc-research-engineering-blog/a-simple-example-for-helm-chart-fbb5c7208e94 / https://ordina-jworks.github.io/cloud/2019/08/05/deploy-spring-boot-kubernetes.html
+
+anglar in spring boot:
+https://www.upnxtblog.com/index.php/2018/09/07/how-to-deploy-angular-6-spring-boot-app-as-single-deployment-unit/
