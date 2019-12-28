@@ -1,0 +1,19 @@
+//Dependon and after anootation for apring config and aop
+//edit json non null by jacson
+private final ObjectMapper objectMapper;
+
+    /**
+     * Basic ObjectMapper configuration.
+     * This object is used for serialization and deserialization of POJOs to/from JSOn.
+     * https://fasterxml.github.io/jackson-databind/javadoc/2.7/com/fasterxml/jackson/databind/ObjectMapper.html
+     */
+    @PostConstruct
+    public void objectMapper() {
+      //  objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, true);
+       // objectMapper.configure(SerializationFeature.INDENT_OUTPUT, true);
+        objectMapper.setSerializationInclusion(JsonInclude.Include.ALWAYS);
+        objectMapper.registerModule(new JavaTimeModule());
+        objectMapper.configure(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS, false);
+
+
+    }
